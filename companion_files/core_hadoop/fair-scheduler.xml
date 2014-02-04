@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<allocations>
+
+  <!-- Example element for configuring a pool -->
+  <pool name="default">
+    <!-- Minimum shares of map and reduce slots. Defaults to 0. -->
+    <minMaps>5</minMaps>
+    <minReduces>1</minReduces>
+    
+	<maxRunningJobs>20</maxRunningJobs>
+    <minSharePreemptionTimeout>300</minSharePreemptionTimeout>
+    <!-- Pool's weight in fair sharing calculations. Defaulti is 1.0. -->
+    <weight>1.0</weight>
+  </pool>
+
+  <!-- Default running job limit pools where it is not explicitly set. -->
+  <poolMaxJobsDefault>20</poolMaxJobsDefault>
+
+  <!-- Default running job limit users where it is not explicitly set. -->
+  <userMaxJobsDefault>10</userMaxJobsDefault>
+
+  <!-- Default min share preemption timeout for pools where it is not
+    explicitly configured, in seconds. Requires mapred.fairscheduler.preemption
+    to be set to true in your mapred-site.xml. -->
+  <defaultMinSharePreemptionTimeout>600</defaultMinSharePreemptionTimeout>
+
+  <!-- Preemption timeout for jobs below their fair share, in seconds. 
+    If a job is below half its fair share for this amount of time, it
+    is allowed to kill tasks from other jobs to go up to its fair share.
+    Requires mapred.fairscheduler.preemption to be true in mapred-site.xml. -->
+  <fairSharePreemptionTimeout>600</fairSharePreemptionTimeout>
+
+</allocations>

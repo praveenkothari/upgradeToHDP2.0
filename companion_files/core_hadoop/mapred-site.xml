@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    
+    <!--
+     Start YARN specific params
+     -->
+    
+    <property>
+        <name>yarn.app.mapreduce.am.admin-command-opts</name>
+        <value>-Djava.net.preferIPv4Stack=true -Dhadoop.metrics.log.level=WARN</value>
+    </property>
+    
+    <property>
+    	<name>mapreduce.admin.reduce.child.java.opts</name>
+    	<value>-Djava.net.preferIPv4Stack=true -Dhadoop.metrics.log.level=WARN</value>
+  	</property>
+  	
+  	<property>
+    	<name>mapreduce.admin.map.child.java.opts</name>
+    	<value>-Djava.net.preferIPv4Stack=true -Dhadoop.metrics.log.level=WARN</value>
+  	</property>
+    
+    <property>
+        <name>yarn.app.mapreduce.am.log.level</name>
+        <value>INFO</value>
+    </property>
+    
+    <property>
+    	<name>mapreduce.application.classpath</name>
+    	<value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*,$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+  	</property>
+    
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    
+    <property>
+        <name>yarn.app.mapreduce.am.command-opts</name>
+        <value>-Xmx1091m</value>
+    </property>
+    
+    <property>
+        <name>yarn.app.mapreduce.am.resource.mb</name>
+        <value>1364</value>
+    </property>
+    
+    <property>
+        <name>yarn.app.mapreduce.am.staging-dir</name>
+        <value>/user</value>
+    </property>
+    
+    
+    <!-- io related properties  -->
+
+   	<property>
+    	<name>mapreduce.task.io.sort.factor</name>
+    	<value>100</value>
+    	<description>The number of streams to merge at once while sorting files.  This determines the number of open file handles.</description>
+    </property>
+   
+  	<property>
+    	<name>mapreduce.task.io.sort.mb</name>
+    	<value>272m</value>
+    	<description>The total amount of buffer memory to use while sorting files, in megabytes.  By default, gives each merge stream 1MB, which should minimize seeks.</description>
+  	</property>
+  
+  	<property>
+    	<name>io.sort.record.percent</name>
+    	<value>.2</value>
+		<description>The percentage of io.sort.mb dedicated to tracking record boundaries. Let this value be r, io.sort.mb be x. The maximum number of records collected before the collection thread must block is equal to (r * x) / 4</description>
+  	</property>
+ 
+  	<property>
+    	<name>mapreduce.map.sort.spill.percent</name>
+    	<value>0.9</value>
+        <description>The soft limit in either the buffer or record collection
+  		buffers. Once reached, a thread will begin to spill the contents to disk
+  		in the background. Note that this does not imply any chunking of data to
+  		the spill. A value less than 0.5 is not recommended.</description>
+    </property>
+  
+  	<property>
+    	<name>io.map.index.skip</name>
+    	<value>0</value>
+        <description>Number of index entries to skip between each entry.
+  		Zero by default. Setting this to values larger than zero can
+  		facilitate opening large map files using less memory.</description>
+	</property>
+  
+   <!-- History Server Configuration -->
+   
+  	<property>
+    	<name>mapreduce.jobhistory.address</name>
+    	<value>sandbox:10020</value>
+	</property>
+  	
+  	<property>
+      	<name>mapreduce.jobhistory.webapp.address</name>
+      	<value>sandbox:19888</value>
+    </property>
+      
+    <property>
+      	<name>mapreduce.jobhistory.done-dir</name>
+      	<value>/mr-history/done</value>
+    </property>
+     
+ 	<property>
+    	<name>mapreduce.jobhistory.intermediate-done-dir</name>
+    	<value>/mr-history/tmp</value>
+    </property>
+      
+    <property>
+        <name>mapreduce.job.userhistorylocation</name>
+        <value>none</value>
+        <description> User can specify a location to store the history files of
+        a particular job. If nothing is specified, the logs are stored in
+        output directory. The files are stored in "_logs/history/" in the directory.
+        User can stop logging by giving the value "none".
+        </description>
+    </property>
+      
+    <property>
+        <name>mapreduce.jobtracker.jobhistory.completed.location</name>
+        <value>/mapred/history/done</value>
+        <description> The completed job history files are stored at this single well
+              known location. If nothing is specified, the files are stored at
+              ${hadoop.job.history.location}/done.
+        </description>
+    </property>
+     
+    <property>
+        <name>mapreduce.jobhistory.max-age-ms</name>
+        <value>2592000000</value>
+        <description> Job history files older than this many milliseconds will
+              be deleted when the history cleaner runs. Defaults to 2592000000 (30
+              days).
+        </description>
+    </property>
+
+    <property>
+        <name>mapreduce.jobhistory.cleaner.interval-ms</name>
+        <value>86400000</value>
+        <description> How often the job history cleaner checks for files to delete,
+              in milliseconds. Defaults to 86400000 (one day). Files are only deleted if
+              they are older than mapreduce.jobhistory.max-age-ms.
+        </description>
+    </property>
+      
+<!-- Memory Related Paramateres -->
+
+
+	<property>
+     	<name>mapreduce.map.java.opts</name>
+    	<value>-Xmx545m</value>
+    	<description>No description</description>
+	</property>
+
+	<property>
+    	<name>mapreduce.reduce.java.opts</name>
+    	<value>-Xmx1091m</value>
+    	<description>No description</description>
+	</property>
+
+	<property>
+    	<name>mapreduce.map.memory.mb</name>
+    	<value>682</value>
+	</property>
+
+	<property>
+    	<name>mapreduce.reduce.memory.mb</name>
+    	<value>1364</value>
+	</property>
+
+
+<!-- 1.x to 2.x migrated propeties -->
+
+	<property>
+    	<name>mapreduce.cluster.administrators</name>
+    	<value>hadoop</value>
+	</property>
+
+	<property>
+    	<name>mapreduce.cluster.temp.dir</name>
+    	<value>${hadoop.tmp.dir}/mapred/temp</value>
+    	<description>A shared directory for temporary files.</description>
+	</property>
+
+	<property>
+    	<name>mapreduce.reduce.shuffle.parallelcopies</name>
+    	<value>30</value>
+    	<description>The default number of parallel transfers run by reduce
+        during the copy(shuffle) phase.</description>
+	</property>
+
+	<property>
+    	<name>mapreduce.map.speculative</name>
+    	<value>true</value>
+    	<description>If true, then multiple instances of some map tasks
+        may be executed in parallel.</description>
+	</property>
+	
+	<property>
+    	<name>mapreduce.reduce.speculative</name>
+    	<value>false</value>
+    	<description>If true, then multiple instances of some reduce tasks
+        may be executed in parallel.</description>
+	</property>
+
+	<property>
+    	<name>mapreduce.job.counters.limit</name>
+    	<value>3000</value>
+	</property>
+
+
+<!-- Compression related defaults  -->
+ 
+	 <property>
+		<name>mapreduce.output.fileoutputformat.compress</name>
+	 	<value>false</value>
+	 	<description>Should the job outputs be compressed?
+	 	</description>
+	 </property>
+ 
+	 <property>
+		 <name>mapreduce.output.fileoutputformat.compress.type</name>
+		 <value>BLOCK</value>
+		 <description>If the job outputs are to compressed as SequenceFiles, how should
+		 they be compressed? Should be one of NONE, RECORD or BLOCK.
+		 </description>
+	 </property>
+ 
+	 <property>
+		 <name>mapreduce.output.fileoutputformat.compress.codec</name>
+		 <value>org.apache.hadoop.io.compress.DefaultCodec</value>
+		 <description>If the job outputs are compressed, how should they be compressed?
+		 </description>
+	 </property>
+ 
+	 <property>
+		 <name>mapreduce.map.output.compress</name>
+		 <value>false</value>
+		 <description>Should the outputs of the maps be compressed before being
+		 sent across the network. Uses SequenceFile compression.
+		 </description>
+	 </property>
+ 
+	 <property>
+	 	<name>mapreduce.map.output.compress.codec</name>
+	 	<value>org.apache.hadoop.io.compress.SnappyCodec</value>
+	 	<description>If the map outputs are compressed, how should they be
+	 	compressed?
+	 	</description>
+	 </property>
+ 
+
+
+<!-- deafult values -->
+
+	<property>
+		<name>mapreduce.job.split.metainfo.maxsize</name>
+		<value>10000000</value>
+		<description>The maximum permissible size of the split metainfo file.
+			The JobTracker won't attempt to read split metainfo files bigger than
+			the configured value.
+			No limits if set to -1.
+		</description>
+	</property>
+
+	<property>
+		<name>mapreduce.map.maxattempts</name>
+		<value>4</value>
+		<description>Expert: The maximum number of attempts per map task.
+			In other words, framework will try to execute a map task these many number
+			of times before giving up on it.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.maxattempts</name>
+		<value>4</value>
+		<description>Expert: The maximum number of attempts per reduce task.
+			In other words, framework will try to execute a reduce task these many number
+			of times before giving up on it.
+		</description>
+	</property>
+
+	<property>
+		<name>mapreduce.reduce.shuffle.maxfetchfailures</name>
+		<value>10</value>
+		<description>The maximum number of times a reducer tries to
+			fetch a map output before it reports it.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.shuffle.connect.timeout</name>
+		<value>180000</value>
+		<description>Expert: The maximum amount of time (in milli seconds) a reduce
+			task spends in trying to connect to a tasktracker for getting map output.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.shuffle.read.timeout</name>
+		<value>180000</value>
+		<description>Expert: The maximum amount of time (in milli seconds) a reduce
+			task waits for map output data to be available for reading after obtaining
+			connection.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.task.timeout</name>
+		<value>600000</value>
+		<description>The number of milliseconds before a task will be
+			terminated if it neither reads an input, writes an output, nor
+			updates its status string.
+		</description>
+	</property>
+	<property>
+		<name>mapreduce.reduce.input.limit</name>
+		<value>107374182400</value>
+		<description>The limit on the input size of the reduce. If the estimated
+			input size of the reduce is greater than this value, job is failed. A
+			value of -1 means that there is no limit set. </description>
+	</property>
+
+	<property>
+		<name>mapred.child.ulimit</name>
+		<value></value>
+		<description>The maximum virtual memory, in KB, of a process launched by the
+			Map-Reduce framework. This can be used to control both the Mapper/Reducer
+			tasks and applications using Hadoop Pipes, Hadoop Streaming etc.
+			By default it is left unspecified to let cluster admins control it via
+			limits.conf and other such relevant mechanisms.
+		
+			Note: mapred.child.ulimit must be greater than or equal to the -Xmx passed to
+			JavaVM, else the VM might not start.
+		</description>
+	</property>
+
+	<property>
+		<name>mapreduce.task.tmp.dir</name>
+		<value>./tmp</value>
+		<description> To set the value of tmp directory for map and reduce tasks.
+			If the value is an absolute path, it is directly assigned. Otherwise, it is
+			prepended with task's working directory. The java tasks are executed with
+			option -Djava.io.tmpdir='the absolute path of the tmp dir'. Pipes and
+			streaming are set with environment variable,
+			TMPDIR='the absolute path of the tmp dir'
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.merge.inmem.threshold</name>
+		<value>1000</value>
+		<description>The threshold, in terms of the number of files
+			for the in-memory merge process. When we accumulate threshold number of files
+			we initiate the in-memory merge and spill to disk. A value of 0 or less than
+			0 indicates we want to DON'T have any threshold and instead depend only on
+			the ramfs's memory consumption to trigger the merge.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.shuffle.merge.percent</name>
+		<value>0.66</value>
+		<description>The usage threshold at which an in-memory merge will be
+			initiated, expressed as a percentage of the total memory allocated to
+			storing in-memory map outputs, as defined by
+			mapred.job.shuffle.input.buffer.percent.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.shuffle.input.buffer.percent</name>
+		<value>0.7</value>
+		<description>The percentage of memory to be allocated from the maximum heap
+			size to storing map outputs during the shuffle.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.input.buffer.percent</name>
+		<value>0.0</value>
+		<description>The percentage of memory- relative to the maximum heap size- to
+			retain map outputs during the reduce. When the shuffle is concluded, any
+			remaining map outputs in memory must consume less than this threshold before
+			the reduce can begin.
+		</description>
+	</property>
+
+	<property>
+		<name>mapreduce.job.jvm.numtasks</name>
+		<value>-1</value>
+		<description>How many tasks to run per jvm. If set to -1, there is
+			no limit.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.input.fileinputformat.split.minsize</name>
+		<value>0</value>
+		<description>The minimum size chunk that map input should be split
+			into.  Note that some file formats may have minimum split sizes that
+			take priority over this setting.</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.jobtracker.maxtasks.perjob</name>
+		<value>-1</value>
+		<description>The maximum number of tasks for a single job.
+			A value of -1 indicates that there is no maximum.  </description>
+	</property>
+	
+	<property>
+		<name>mapreduce.client.submit.file.replication</name>
+		<value>10</value>
+		<description>The replication level for submitted job files.  This
+			should be around the square root of the number of nodes.
+		</description>
+	</property>
+
+	<property>
+		<name>mapreduce.task.files.preserve.failedtasks</name>
+		<value>false</value>
+		<description>Should the files for failed tasks be kept. This should only be
+			used on jobs that are failing, because the storage is never
+			reclaimed. It also prevents the map outputs from being erased
+			from the reduce directory as they are consumed.</description>
+	</property>
+	
+	<property>
+		<name>map.sort.class</name>
+		<value>org.apache.hadoop.util.QuickSort</value>
+		<description>The default sort class for sorting keys.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.task.userlog.limit.kb</name>
+		<value>0</value>
+		<description>The maximum size of user-logs of each task in KB. 0 disables the cap.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.job.userlog.retain.hours</name>
+		<value>24</value>
+		<description>The maximum time, in hours, for which the user-logs are to be
+			retained after the job completion.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapred.user.jobconf.limit</name>
+		<value>33554432</value>
+		<description>The maximum allowed size of the user jobconf. The
+			default is set to 5 MB</description>
+	</property>
+
+	<property>
+		<name>mapreduce.job.complete.cancel.delegation.tokens</name>
+		<value>true</value>
+		<description> if false - do not unregister/cancel delegation tokens
+			from renewal, because same tokens may be used by spawned jobs
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.task.profile</name>
+		<value>false</value>
+		<description>To set whether the system should collect profiler
+			information for some of the tasks in this job? The information is stored
+			in the user log directory. The value is "true" if task profiling
+			is enabled.</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.task.profile.maps</name>
+		<value>0-2</value>
+		<description> To set the ranges of map tasks to profile.
+			mapred.task.profile has to be set to true for the value to be accounted.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.task.profile.reduces</name>
+		<value>0-2</value>
+		<description> To set the ranges of reduce tasks to profile.
+			mapred.task.profile has to be set to true for the value to be accounted.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.input.lineinputformat.linespermap</name>
+		<value>1</value>
+		<description> Number of lines per split in NLineInputFormat.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.task.skip.start.attempts</name>
+		<value>2</value>
+		<description> The number of Task attempts AFTER which skip mode
+			will be kicked off. When skip mode is kicked off, the
+			tasks reports the range of records which it will process
+			next, to the TaskTracker. So that on failures, TT knows which
+			ones are possibly the bad records. On further executions,
+			those are skipped.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.map.skip.proc-count.auto-incr</name>
+		<value>true</value>
+		<description> The flag which if set to true,
+			SkipBadRecords.COUNTER_MAP_PROCESSED_RECORDS is incremented
+			by MapRunner after invoking the map function. This value must be set to
+			false for applications which process the records asynchronously
+			or buffer the input records. For example streaming.
+			In such cases applications should increment this counter on their own.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.skip.proc-count.auto-incr</name>
+		<value>true</value>
+		<description> The flag which if set to true,
+			SkipBadRecords.COUNTER_REDUCE_PROCESSED_GROUPS is incremented
+			by framework after invoking the reduce function. This value must be set to
+			false for applications which process the records asynchronously
+			or buffer the input records. For example streaming.
+			In such cases applications should increment this counter on their own.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.job.skip.outdir</name>
+		<value></value>
+		<description> If no value is specified here, the skipped records are
+			written to the output directory at _logs/skip.
+			User can stop writing skipped records by giving the value "none".
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.map.skip.maxrecords</name>
+		<value>0</value>
+		<description> The number of acceptable skip records surrounding the bad
+			record PER bad record in mapper. The number includes the bad record as well.
+			To turn the feature of detection/skipping of bad records off, set the
+			value to 0.
+			The framework tries to narrow down the skipped range by retrying
+			until this threshold is met OR all attempts get exhausted for this task.
+			Set the value to Long.MAX_VALUE to indicate that framework need not try to
+			narrow down. Whatever records(depends on application) get skipped are
+			acceptable.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.reduce.skip.maxgroups</name>
+		<value>0</value>
+		<description> The number of acceptable skip groups surrounding the bad
+			group PER bad group in reducer. The number includes the bad group as well.
+			To turn the feature of detection/skipping of bad groups off, set the
+			value to 0.
+			The framework tries to narrow down the skipped range by retrying
+			until this threshold is met OR all attempts get exhausted for this task.
+			Set the value to Long.MAX_VALUE to indicate that framework need not try to
+			narrow down. Whatever groups(depends on application) get skipped are
+			acceptable.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.ifile.readahead</name>
+		<value>true</value>
+		<description>Configuration key to enable/disable IFile readahead.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.ifile.readahead.bytes</name>
+		<value>4194304</value>
+		<description>Configuration key to set the IFile readahead length in bytes.
+		</description>
+	</property>
+	
+	<property>
+		<name>mapreduce.job.end-notification.retry.attempts</name>
+		<value>0</value>
+		<description>Indicates how many times hadoop should attempt to contact the
+			notification URL </description>
+	</property>
+	
+	<property>
+		<name>mapreduce.job.end-notification.retry.interval</name>
+		<value>30000</value>
+		<description>Indicates time in milliseconds between notification URL retry
+			calls</description>
+	</property>
+	
+	<property>
+		<name>hadoop.rpc.socket.factory.class.JobSubmissionProtocol</name>
+		<value></value>
+		<description> SocketFactory to use to connect to a Map/Reduce master
+			(JobTracker). If null or empty, then use hadoop.rpc.socket.class.default.
+		</description>
+	</property>
+
+	<property>
+		<name>mapreduce.job.reduce.slowstart.completedmaps</name>
+		<value>0.05</value>
+		<description>Fraction of the number of maps in the job which should be
+			complete before reduces are scheduled for the job.
+		</description>
+	</property>
+
+	<property>
+    	<name>mapreduce.fileoutputcommitter.marksuccessfuljobs</name>
+    	<value>false</value>
+    </property>
+    
+    <property>
+        <name>mapreduce.job.counters.max</name>
+        <value>120</value>
+        <description>Limit on the number of counters allowed per job.
+        </description>
+    </property>
+ 
+    <property>
+        <name>mapreduce.job.counters.groups.max</name>
+        <value>100</value>
+        <description>Limit on the number of counter groups allowed per job.
+        </description>
+    </property>
+    
+    <property>
+        <name>mapreduce.job.counters.counter.name.max</name>
+        <value>90</value>
+        <description>Limit on the length of counter names in jobs. Names
+            exceeding this limit will be truncated.
+        </description>
+    </property>
+    
+    <property>
+        <name>mapreduce.job.counters.group.name.max</name>
+        <value>128</value>
+        <description>Limit on the length of counter group names in jobs. Names
+            exceeding this limit will be truncated.
+        </description>
+    </property>
+    
+    <property>
+        <name>jetty.connector</name>
+        <value>org.mortbay.jetty.nio.SelectChannelConnector</value>
+    </property>
+
+</configuration>
