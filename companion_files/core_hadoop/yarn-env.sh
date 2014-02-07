@@ -17,10 +17,10 @@
 # */
 
 export HADOOP_YARN_HOME=/usr/lib/hadoop-yarn
-export YARN_LOG_DIR=/var/log/hadoop-yarn/$USER
-export YARN_PID_DIR=/var/run/hadoop-yarn/$USER
+export YARN_LOG_DIR=/var/log/hadoop-yarn
+export YARN_PID_DIR=/var/run/hadoop-yarn
 export HADOOP_LIBEXEC_DIR=/usr/lib/hadoop/libexec
-export JAVA_HOME=/usr/jdk/jdk1.6.0_31/
+export JAVA_HOME=/usr/jdk64/jdk1.6.0_31/
 
 export YARN_HEAPSIZE=1024
 
