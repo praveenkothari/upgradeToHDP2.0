@@ -51,7 +51,7 @@ export HADOOP_SSH_OPTS="-o ConnectTimeout=5 -o SendEnv=HADOOP_CONF_DIR"
 
 # Where log files are stored.  $HADOOP_HOME/logs by default.
 export HADOOP_LOG_DIR=/var/log/hadoop/$USER
-export MAPRED_lOG_DIR=/var/log/hadoop-mapreduce/$USER
+export MAPRED_LOG_DIR=/var/log/hadoop-mapreduce/$USER
 
 # Where log files are stored in the secure data environment.
 export HADOOP_SECURE_DN_LOG_DIR=/var/log/hadoop/$HADOOP_SECURE_DN_USER

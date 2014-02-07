@@ -16,7 +16,7 @@
 # export JAVA_HOME=/home/y/libexec/jdk1.6.0/
 
 export HADOOP_JOB_HISTORYSERVER_HEAPSIZE=1000
-export HADOOP_MAPRED_lOG_DIR="/var/log/hadoop-mapreduce"
+export HADOOP_MAPRED_LOG_DIR=/var/log/hadoop-mapreduce
 export HADOOP_MAPRED_ROOT_LOGGER=INFO,RFA
 
 #export HADOOP_JOB_HISTORYSERVER_OPTS=
