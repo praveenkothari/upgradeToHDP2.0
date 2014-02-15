@@ -40,7 +40,7 @@ export OOZIE_LOG=/var/log/oozie
 export CATALINA_PID=/var/run/oozie/oozie.pid
 
 #Location of the data for oozie
-export OOZIE_DATA=/hadoop/oozie/data/
+export OOZIE_DATA=/var/db/oozie
 
 # Oozie Log4J configuration file to load from Oozie configuration directory
 #

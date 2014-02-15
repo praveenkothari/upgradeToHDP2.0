@@ -84,6 +84,8 @@
   <property>
     <name>oozie.service.JPAService.jdbc.driver</name>
     <value>org.apache.derby.jdbc.EmbeddedDriver</value>
+    <!-- <value>com.mysql.jdbc.Driver</value> -->
+    <!-- <value>org.apache.derby.jdbc.EmbeddedDriver</value> -->
   </property>
     <property>
     <name>oozie.service.coord.normal.default.timeout</name>
@@ -101,6 +103,7 @@
     <name>oozie.service.JPAService.jdbc.url</name>
     <value>jdbc:derby:TODO-OOZIE_DATA-DIR/${oozie.db.schema.name}-db;create=true</value>
     <!-- <value>jdbc:derby:${oozie.data.dir}/${oozie.db.schema.name}-db;create=true</value> -->
+    <!-- <value>jdbc:mysql://$my_server:my_port/oozie?createDatabaseIfNotExist=true</value> -->
   </property>
     <property>
     <name>oozie.authentication.type</name>
